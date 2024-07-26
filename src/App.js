@@ -56,11 +56,11 @@ function App() {
     <div className="App">
       <h2>MARS Facial Recognition Attandance System</h2>
       <form onSubmit={sendImage}>
-        <input type='file' name='image' onChange={e => setImage(e.target.files[0])} />
+        <input type='file' name='image' onChange={e => {setAuth(false); setUploadResultMessage('Click on authenticate to verify'); setImage(e.target.files[0])}} />
         <button type='submit'>Authenticate</button>
       </form>
       <div className={isAuth ? 'success' : 'failure'}>{uploadResultMessage}</div>
-      <img src={ requestAnimationFrame(`./vistors/${visitorName}`) } alt="Visitor" height={250} width={250} />
+      {image && <img src={ image && URL.createObjectURL(image) } alt="Visitor" height={250} width={250} />}
     </div>
   );
 }
